@@ -1,0 +1,51 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.gradient-border-bottom {
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(to right, #d760ea, #ca2de4);
+  border-image-slice: 1;
+  border-radius: 1rem;
+}
+
+.gradient-NavBar {
+  background: linear-gradient(to right, #e9ecfe, #dfeeff);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #d760ea, #ca2de4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.button-background {
+  background: linear-gradient(to right, #d760ea, #ca2de4);
+}
+
+.bg-primary {
+  background: linear-gradient(to right, #d760ea, #ca2de4);
+  color: white; /* Text color */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #dedede;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(151, 151, 151);
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(114, 114, 114);
+}

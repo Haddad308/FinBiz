@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 import { InferGetServerSidePropsType, NextPage } from "next";
@@ -12,7 +14,7 @@ import { APIActionResponse, User } from "@/types";
 import { withCommonGetServerSideProps } from "@/utils/withCommonGetServerSideProps";
 import { useTranslation } from "next-i18next";
 import { setCookie } from "cookies-next";
-export const getServerSideProps = withCommonGetServerSideProps(["auth", "common"]);
+// export const getServerSideProps = withCommonGetServerSideProps(["auth", "common"]);
 const Register: NextPage = ({ NEXTAUTH_URL }: InferGetServerSidePropsType<any>) => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
@@ -85,9 +87,6 @@ const Register: NextPage = ({ NEXTAUTH_URL }: InferGetServerSidePropsType<any>) 
       return;
     }
 
-    //remember that nothing in real will insert into the database. so if you want to access the new id you will get a 404 error.
-    //so use default user from docs:
-    //https://dummyjson.com/docs/auth#auth-login
     const res = await signIn("credentials", {
       redirect: false,
       username: "emilys",
