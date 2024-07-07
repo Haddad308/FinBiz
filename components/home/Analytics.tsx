@@ -28,7 +28,7 @@ const Analytics = () => {
             <p className="text-4xl font-medium">$550.240</p>
           </div>
           <div className="col-span-4 hidden rounded-xl border-2 bg-white dark:border-gray-900 dark:dark:bg-[#1a1a1a]  md:block">
-            {/* <ApexChart /> */}
+            <ApexChart />
           </div>
         </div>
       </div>
