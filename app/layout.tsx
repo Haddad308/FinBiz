@@ -1,4 +1,6 @@
 import "./globals.css";
+import NavBar from "@/components/layout/NavBar";
+import { Providers } from "./providors";
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -9,7 +11,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Providers>
+          <NavBar />
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }
