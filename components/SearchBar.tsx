@@ -8,7 +8,7 @@ export const SearchBar = () => {
         radius={"full"}
         type="Keyword"
         placeholder="Enter your email adress"
-        className="w-[300px] border-0 md:w-96"
+        className="w-[300px] border-0 dark:text-white md:w-96"
         variant="bordered"
         color="primary"
       />
