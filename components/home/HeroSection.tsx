@@ -14,7 +14,7 @@ const HeroSection = () => {
         className=" my-4
        text-center text-5xl font-semibold text-primaryDark dark:text-white "
       >
-        The Finance Solutions <br /> For Your Business
+        The Finance Solutions <br className="hidden md:block" /> For Your Business
       </h1>
       <p className=" text-center text-customGray">
         Empower your finance team. The onestop plateform for all financial management <br /> of small and medium-sized
