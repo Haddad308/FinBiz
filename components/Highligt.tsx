@@ -19,7 +19,7 @@ const Highligt = ({ buttonText, mainText }: HighligtProps) => {
           {buttonText}
         </Button>
       ) : null}
-      <p className="text-[#a3dc2f]">{mainText}</p>
+      <p className="font-semibold text-black dark:text-[#a3dc2f]">{mainText}</p>
       <FaArrowRight className="text-[#a3dc2f]" />
     </div>
   );
