@@ -1,7 +1,6 @@
 import "./globals.css";
 import NavBar from "@/components/layout/NavBar";
 import { Providers } from "./providors";
-import { DarkModeProvider } from "@/contexts/DarkMode";
 import Footer from "@/components/layout/Footer";
 import { Rights } from "@/components/layout/Rights";
 
@@ -13,16 +12,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      suppressHydrationWarning={true}
+    >
       <body>
-        <DarkModeProvider>
-          <Providers>
-            <NavBar />
-            {children}
-            <Footer />
-            <Rights />
-          </Providers>
-        </DarkModeProvider>
+        <Providers>
+          <NavBar />
+          {children}
+          <Footer />
+          <Rights />
+        </Providers>
       </body>
     </html>
   );

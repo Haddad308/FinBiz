@@ -1,18 +1,13 @@
 "use client";
 
-import { useDarkModeContext } from "@/contexts/DarkMode";
 import { Avatar, AvatarGroup, Button } from "@nextui-org/react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
-import React, { use, useEffect } from "react";
 
 const SecondBanner = () => {
   // *We need to optimize the card components in the SecondBanner component
 
-  const { dark } = useDarkModeContext();
-
-  useEffect(() => {
-    console.log("Dark mode state changed:", dark);
-  }, [dark]);
+  const { resolvedTheme } = useTheme();
 
   return (
     <div className="z-30 w-[80%]">
@@ -25,7 +20,7 @@ const SecondBanner = () => {
             Make informed decisions backed by data through our analytics tools. 
           </p>
           <Image
-            src={!dark ? "/div.contnet (1).svg" : "div.contnet.svg"}
+            src={resolvedTheme !== "dark" ? "/div.contnet (1).svg" : "div.contnet.svg"}
             width={300}
             height={300}
             alt="data report"
@@ -92,7 +87,7 @@ const SecondBanner = () => {
             </div>
             <div className=" shadow-x;  mb-10 flex w-full items-center justify-center rounded-xl border-[1px] dark:border-gray-700 ">
               <Image
-                src={dark ? "/Frame 1618872973 (1).svg" : "Frame 1618872973.svg"}
+                src={resolvedTheme === "dark" ? "/Frame 1618872973 (1).svg" : "Frame 1618872973.svg"}
                 width={500}
                 height={500}
                 alt="data report"
