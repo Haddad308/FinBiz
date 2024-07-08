@@ -1,22 +1,19 @@
 import React from "react";
-import Highligt from "../Highligt";
-import { SearchBar } from "../SearchBar";
+import Highligt from "../../Highligt";
+import { SearchBar } from "../../SearchBar";
 import { Avatar, AvatarGroup } from "@nextui-org/react";
 
 const HeroSection = () => {
   return (
-    <div className="bg-lightGray dark:bg-darkGray flex flex-col items-center justify-center gap-3 py-5 md:px-16">
+    <div className="flex flex-col items-center justify-center gap-3 bg-lightGray py-5 dark:bg-darkGray md:px-16">
       <Highligt
         buttonText="New"
         mainText="Introducing AI Automation"
       />
-      <h1
-        className=" text-primaryDark
-       my-4 text-center text-5xl font-semibold dark:text-white "
-      >
-        The Finance Solutions <br className="hidden md:block" /> For Your Business
+      <h1 className=" my-4 text-center text-5xl font-semibold text-primaryDark dark:text-white ">
+        The Finance Solutions <br className="hidden sm:block md:block" /> For Your Business
       </h1>
-      <p className=" text-customGray text-center">
+      <p className="text-center text-customGray">
         Empower your finance team. The onestop plateform for all financial management <br /> of small and medium-sized
         business.
       </p>

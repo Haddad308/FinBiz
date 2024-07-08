@@ -9,7 +9,7 @@ const AnalyticsCard = () => {
         <p className="text-red-500">+18.23</p>
       </div>
       <div className="mt-3 flex items-center justify-between">
-        <p className="text-4xl font-semibold">$350.240</p>
+        <p className="text-4xl  md:text-2xl lg:text-4xl">$350.240</p>
         <Image
           src={"/graph (1).svg"}
           width={40}

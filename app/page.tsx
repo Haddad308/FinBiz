@@ -1,9 +1,9 @@
-import Analytics from "@/components/home/Analytics";
-import HeroSection from "@/components/home/HeroSection";
+import Analytics from "@/components/home/Sections/Analytics";
+import HeroSection from "@/components/home/Sections/HeroSection";
 
 export default function Home() {
   return (
-    <div className="">
+    <div>
       <HeroSection />
       <Analytics />
     </div>

@@ -24,7 +24,8 @@ module.exports = {
         lightGray: "#f6f6f6",
         primaryDark: "rgba(29, 28, 32, 1)",
         bgSplit: "linear-gradient(rgba(29, 28, 32, 1) 50%, #000000 50%, #000000)",
-        bgSplitLight: "linear-gradient(#f6f6f6 50%, #f2f2f2 50%, #f2f2f2)"
+        bgSplitLight: "linear-gradient(#f6f6f6 50%, #f2f2f2 50%, #f2f2f2)",
+        danger: "#ffffff" // Added white color
       }
     }
   },
