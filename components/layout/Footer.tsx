@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { FaFacebookF } from "react-icons/fa";
 import { DiGithubAlt } from "react-icons/di";
 import { FaXTwitter } from "react-icons/fa6";

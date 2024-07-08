@@ -3,6 +3,8 @@
 import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const ApexChart: React.FC = () => {
   const [series, setSeries] = useState([
@@ -16,7 +18,7 @@ const ApexChart: React.FC = () => {
     }
   ]);
 
-  const [options, setOptions] = useState<ApexOptions>({
+  const [options, _] = useState<ApexOptions>({
     chart: {
       height: 350,
       type: "area"
