@@ -1,6 +1,9 @@
 import "./globals.css";
 import NavBar from "@/components/layout/NavBar";
 import { Providers } from "./providors";
+import { DarkModeProvider } from "@/contexts/DarkMode";
+import Footer from "@/components/layout/Footer";
+import { Rights } from "@/components/layout/Rights";
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -12,10 +15,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers>
-          <NavBar />
-          {children}
-        </Providers>
+        <DarkModeProvider>
+          <Providers>
+            <NavBar />
+            {children}
+            <Footer />
+            <Rights />
+          </Providers>
+        </DarkModeProvider>
       </body>
     </html>
   );

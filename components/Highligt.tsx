@@ -1,15 +1,18 @@
 import { Button } from "@nextui-org/react";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { LiaComments } from "react-icons/lia";
 
 type HighligtProps = {
   buttonText?: string;
   mainText: string;
+  quote?: boolean;
+  children?: React.ReactNode;
 };
 
-const Highligt = ({ buttonText, mainText }: HighligtProps) => {
+const Highligt = ({ buttonText, mainText, quote, children }: HighligtProps) => {
   return (
-    <div className=" mt-5 flex items-center gap-2 rounded-full border-2 border-b-0 border-[#364c09] p-2 text-success-600 dark:bg-[#171f05]">
+    <div className=" mt-5 flex items-center gap-2 rounded-full border-2 border-b-0 border-[#364c09] bg-white  p-2 text-success-600 dark:bg-[#171f05]">
       {buttonText ? (
         <Button
           size="sm"
@@ -19,8 +22,10 @@ const Highligt = ({ buttonText, mainText }: HighligtProps) => {
           {buttonText}
         </Button>
       ) : null}
+      {quote ? <LiaComments className="text-black dark:text-[#a3dc2f]" /> : null}
+
       <p className="font-semibold text-black dark:text-[#a3dc2f]">{mainText}</p>
-      <FaArrowRight className="text-[#a3dc2f]" />
+      {buttonText ? children : null}
     </div>
   );
 };

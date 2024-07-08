@@ -6,9 +6,18 @@ const MainBanner = () => {
   return (
     <div className="  z-10 w-[80%] rounded-xl border-0 bg-[#f2f2f2] p-3 shadow-2xl dark:border-gray-900 dark:bg-black">
       <div className=" grid w-full gap-4 md:grid-cols-3">
-        <AnalyticsCard />
-        <AnalyticsCard />
-        <AnalyticsCard />
+        <AnalyticsCard
+          value={400.605}
+          ValueType="profit"
+        />
+        <AnalyticsCard
+          value={200.0}
+          ValueType="revenue"
+        />
+        <AnalyticsCard
+          value={350.24}
+          ValueType="sold"
+        />
       </div>
 
       <div className=" mt-4 grid w-full gap-4 md:grid-cols-5">
