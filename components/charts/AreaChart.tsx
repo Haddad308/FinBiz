@@ -50,11 +50,6 @@ const ApexChart: React.FC = () => {
       stroke: {
         curve: "straight"
       },
-
-      subtitle: {
-        text: "Price Movements",
-        align: "left"
-      },
       labels: seriesData.monthDataSeries1.dates,
       xaxis: {
         type: "datetime"
