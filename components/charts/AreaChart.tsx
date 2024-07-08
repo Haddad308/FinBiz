@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { ApexOptions } from "apexcharts";
+import { Skeleton } from "@nextui-org/react";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -76,7 +77,17 @@ const ApexChart: React.FC = () => {
           />
         </div>
       ) : (
-        <div>Loading...</div>
+        <div className="mt-32 flex flex-col items-center gap-5">
+          <Skeleton className="w-4/5 rounded-lg">
+            <div className="h-3 w-full rounded-lg bg-secondary-300"></div>
+          </Skeleton>
+          <Skeleton className="w-4/5 rounded-lg">
+            <div className="h-3 w-full rounded-lg bg-secondary-300"></div>
+          </Skeleton>
+          <Skeleton className="w-4/5 rounded-lg">
+            <div className="h-3 w-full rounded-lg bg-secondary-300"></div>
+          </Skeleton>
+        </div>
       )}
       <div id="html-dist"></div>
     </div>
