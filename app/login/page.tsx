@@ -2,9 +2,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
-import Image from "next/image";
 import { useState } from "react";
-import Link from "next/link";
 import { EyeSlashFilledIcon } from "@/components/icons/EyeSlashFilledIcon";
 import { EyeFilledIcon } from "@/components/icons/EyeFilledIcon";
 
