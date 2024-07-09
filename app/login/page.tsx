@@ -31,11 +31,11 @@ const Login = () => {
     },
     validationSchema: Yup.object({
       username: Yup.string()
-        .matches(/^[a-zA-Z0-9]{3,20}$/, "Username must be 3-20 characters long and contain only letters and numbers")
+        .matches(/^[a-zA-Z0-9]{3,20}$/, "Username must be 3-20 characters")
         .required("Required"),
       password: Yup.string().required("Required")
     }),
-    onSubmit: (values) => {
+    onSubmit: () => {
       login("emilys", "emilyspass", setIsLoading, setApiError).then(() => {
         updateUser().then(() => {
           router.push("/comments");
@@ -51,16 +51,14 @@ const Login = () => {
           onSubmit={formik.handleSubmit}
           className="flex flex-col items-center justify-center"
         >
-          <div className="flex items-center gap-1"></div>
           <h2 className="text-2xl font-semibold ltr:ml-3 rtl:mr-3">Welcome back!</h2>
           <h1 className="text-gray-400">Sign in to your msaaq account</h1>
 
-          <div className="mt-5 flex w-full flex-col items-start gap-5">
+          <div className="mt-5 flex w-full flex-col items-center gap-5">
             <div className="flex w-full flex-col gap-3">
               <Select
                 label="Select Language"
                 id="travelOfficeId"
-                placeholder="Select an agency"
               >
                 <SelectItem
                   key={1}
@@ -74,7 +72,6 @@ const Login = () => {
                   className="rounded-lg"
                   label="username"
                   name="username"
-                  placeholder="Enter your username"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.username.trim()}
@@ -88,7 +85,6 @@ const Login = () => {
                   className="rounded-lg"
                   label="Password"
                   name="password"
-                  placeholder="Enter your password"
                   endContent={
                     <button
                       className="focus:outline-none "
@@ -108,8 +104,19 @@ const Login = () => {
                 )}
               </div>
             </div>
+            <div className="text-gray-400">
+              <p className="text-small">
+                Don&apos;t have an account yet?{" "}
+                <span
+                  onClick={() => router.push("/register")}
+                  className="cursor-pointer font-semibold text-black transition-all duration-300 hover:text-blue-500 dark:text-white dark:hover:text-blue-500"
+                >
+                  Sign up now
+                </span>
+              </p>
+            </div>
             <Button
-              className="w-full rounded-lg bg-black font-semibold text-white dark:bg-white dark:text-black"
+              className="w-full rounded-lg bg-black font-semibold text-white  dark:bg-white dark:text-black"
               type="submit"
               isLoading={isLoading}
             >

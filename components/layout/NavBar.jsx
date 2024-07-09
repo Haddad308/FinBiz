@@ -179,6 +179,15 @@ export default function NavBar() {
       <NavbarMenu>
         <NavbarMenuItem>
           <Link
+            href="/login"
+            size="lg"
+            className="cursor-pointer text-xl text-black dark:text-customGray"
+          >
+            Login
+          </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Link
             href="/comments"
             size="lg"
             className="cursor-pointer text-xl text-black dark:text-customGray"
