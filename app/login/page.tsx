@@ -20,6 +20,7 @@ const Login = () => {
   const { fetchUser } = useUser();
 
   const updateUser = async () => {
+    console.log("Updating user ?? ");
     await fetchUser();
   };
 
@@ -36,8 +37,9 @@ const Login = () => {
     }),
     onSubmit: (values) => {
       login("emilys", "emilyspass", setIsLoading, setApiError).then(() => {
-        router.push("/comments");
-        updateUser();
+        updateUser().then(() => {
+          router.push("/comments");
+        });
       });
     }
   });
