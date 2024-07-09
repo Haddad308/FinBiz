@@ -1,4 +1,5 @@
 import { Button } from "@nextui-org/react";
+import Link from "next/link";
 import React from "react";
 
 const TinyNavBar = () => {
@@ -11,9 +12,12 @@ const TinyNavBar = () => {
       <p className="text-center ">Integration</p>
       <p className="text-center ">Demo</p>
       <p className="text-center ">Pricing</p>
-      <Button className=" col-span-2 cursor-pointer rounded-full bg-white font-semibold text-black md:col-span-1">
+      <Link
+        href={"/login"}
+        className="col-span-2 cursor-pointer rounded-full bg-white px-4 py-2 font-semibold text-black md:col-span-1"
+      >
         Login
-      </Button>
+      </Link>
     </div>
   );
 };

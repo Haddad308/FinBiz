@@ -9,6 +9,7 @@ const HeroSection = () => {
       <Highligt
         buttonText="New"
         mainText="Introducing AI Automation"
+        isMain={true}
       />
       <h1 className=" my-4 text-center text-5xl font-semibold text-primaryDark dark:text-white ">
         The Finance Solutions <br className="hidden sm:block md:block" /> For Your Business

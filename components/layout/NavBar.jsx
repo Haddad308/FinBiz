@@ -17,12 +17,10 @@ import {
   Dropdown
 } from "@nextui-org/react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import DarkModeToggle from "../DarkModeToggle";
 
 export default function NavBar() {
-  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
