@@ -1,3 +1,5 @@
+"use server";
+
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -5,11 +7,24 @@ import { NextRequest, NextResponse } from "next/server";
 const secretKey = "secret";
 const key = new TextEncoder().encode(secretKey);
 
+interface UserData {
+  email: string;
+  name: string;
+  // Include other fields as necessary
+}
+
+interface LoginResponse {
+  user: UserData;
+  token: string;
+  expiresIn: number;
+  // Include other fields as necessary
+}
+
 export async function encrypt(payload: any) {
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("10 sec from now")
+    .setExpirationTime("1 day")
     .sign(key);
 }
 
@@ -20,14 +35,16 @@ export async function decrypt(input: string): Promise<any> {
   return payload;
 }
 
-export async function login(formData: FormData) {
-  // Verify credentials && get the user
+export async function saveCookies(data: LoginResponse) {
+  // Extract user data and session expiration
+  const { user, token } = data;
 
-  const user = { email: formData.get("email"), name: "John" };
+  // Set expiration to 3 days in milliseconds
+  const threeDaysInMilliseconds = 3 * 24 * 60 * 60 * 1000; // 3 days
+  const expires = new Date(Date.now() + threeDaysInMilliseconds);
 
   // Create the session
-  const expires = new Date(Date.now() + 10 * 1000);
-  const session = await encrypt({ user, expires });
+  const session = await encrypt({ user, token, expires });
 
   // Save the session in a cookie
   cookies().set("session", session, { expires, httpOnly: true });
@@ -44,19 +61,19 @@ export async function getSession() {
   return await decrypt(session);
 }
 
-export async function updateSession(request: NextRequest) {
-  const session = request.cookies.get("session")?.value;
-  if (!session) return;
+// export async function updateSession(request: NextRequest) {
+//   const session = request.cookies.get("session")?.value;
+//   if (!session) return;
 
-  // Refresh the session so it doesn't expire
-  const parsed = await decrypt(session);
-  parsed.expires = new Date(Date.now() + 10 * 1000);
-  const res = NextResponse.next();
-  res.cookies.set({
-    name: "session",
-    value: await encrypt(parsed),
-    httpOnly: true,
-    expires: parsed.expires
-  });
-  return res;
-}
+//   // Refresh the session so it doesn't expire
+//   const parsed = await decrypt(session);
+//   parsed.expires = new Date(Date.now() + 10 * 1000);
+//   const res = NextResponse.next();
+//   res.cookies.set({
+//     name: "session",
+//     value: await encrypt(parsed),
+//     httpOnly: true,
+//     expires: parsed.expires
+//   });
+//   return res;
+// }

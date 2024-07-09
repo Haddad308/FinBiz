@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -19,10 +19,15 @@ import {
 import Image from "next/image";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import DarkModeToggle from "../DarkModeToggle";
+import { useRouter } from "next/navigation";
+import Logout from "../Logout";
+import { useUser } from "@/contexts/userContext";
 
 export default function NavBar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user } = useUser();
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
   return (
     <Navbar
       shouldHideOnScroll
@@ -151,14 +156,22 @@ export default function NavBar() {
           </Link>
         </NavbarItem>
       </NavbarContent>
+
       <NavbarContent justify="end">
         <NavbarItem>
           <DarkModeToggle />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
-          <Button className="bggr rounded-full border-2 border-b-0  border-blackGray bg-[#f6f6f6] text-lg text-black dark:bg-[#1f1f1f] dark:text-white">
-            Get Started
-          </Button>
+          {user ? (
+            <Logout />
+          ) : (
+            <Button
+              onClick={() => router.push("/login")}
+              className="bggr rounded-full border-2 border-b-0 border-blackGray  bg-[#f6f6f6] text-lg font-semibold text-black dark:bg-[#1f1f1f] dark:text-white"
+            >
+              Sign in
+            </Button>
+          )}
         </NavbarItem>
       </NavbarContent>
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { UserProvider } from "@/contexts/userContext";
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider } from "next-themes";
 
@@ -10,7 +11,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
       defaultTheme="system"
       enableSystem={true}
     >
-      <NextUIProvider>{children}</NextUIProvider>
+      <UserProvider>
+        <NextUIProvider>{children}</NextUIProvider>
+      </UserProvider>
     </ThemeProvider>
   );
 }

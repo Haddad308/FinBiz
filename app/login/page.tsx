@@ -1,35 +1,44 @@
 "use client";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 import { useState } from "react";
 import { EyeSlashFilledIcon } from "@/components/icons/EyeSlashFilledIcon";
 import { EyeFilledIcon } from "@/components/icons/EyeFilledIcon";
+import { login } from "@/handlers";
+import { useRouter } from "next/navigation";
+import { useUser } from "@/contexts/userContext";
 
 const Login = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [apiError, setApiError] = useState("");
-
+  const [apiError, setApiError] = useState<string | null>(null);
+  const router = useRouter();
   const toggleVisibility = () => setIsVisible(!isVisible);
+
+  const { fetchUser } = useUser();
+
+  const updateUser = async () => {
+    await fetchUser();
+  };
 
   const formik = useFormik({
     initialValues: {
-      email: "",
+      username: "",
       password: ""
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email address").required("Required"),
+      username: Yup.string()
+        .matches(/^[a-zA-Z0-9]{3,20}$/, "Username must be 3-20 characters long and contain only letters and numbers")
+        .required("Required"),
       password: Yup.string().required("Required")
     }),
     onSubmit: (values) => {
-      console.log("Form Submitted", values);
-      setIsLoading(true);
-      // Simulate API call
-      setTimeout(() => {
-        setIsLoading(false);
-        setApiError("Wrong Email or Password."); // Example API error
-      }, 2000);
+      login("emilys", "emilyspass", setIsLoading, setApiError).then(() => {
+        router.push("/comments");
+        updateUser();
+      });
     }
   });
 
@@ -50,11 +59,6 @@ const Login = () => {
                 label="Select Language"
                 id="travelOfficeId"
                 placeholder="Select an agency"
-                // value={formHandler.values.travelOfficeId}
-                // onClick={handleUpdateAgencies}
-                // onChange={formHandler.handleChange("travelOfficeId")}
-                // isInvalid={formHandler.errors.travelOfficeId && formHandler.touched.travelOfficeId}
-                // errorMessage={formHandler.errors.travelOfficeId}
               >
                 <SelectItem
                   key={1}
@@ -63,38 +67,44 @@ const Login = () => {
                   vals
                 </SelectItem>
               </Select>
-              <Input
-                className="rounded-lg"
-                label="Email"
-                name="email"
-                placeholder="Enter your email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email.trim()}
-                isInvalid={formik.touched.email && !!formik.errors.email}
-                errorMessage={formik.touched.email && formik.errors.email}
-              />
-              <Input
-                className="rounded-lg"
-                label="Password"
-                name="password"
-                placeholder="Enter your password"
-                endContent={
-                  <button
-                    className="focus:outline-none "
-                    type="button"
-                    onClick={toggleVisibility}
-                  >
-                    {isVisible ? <EyeSlashFilledIcon /> : <EyeFilledIcon />}
-                  </button>
-                }
-                type={isVisible ? "text" : "password"}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.password.trim()}
-                isInvalid={formik.touched.password && !!formik.errors.password}
-                errorMessage={formik.touched.password && formik.errors.password}
-              />
+              <div>
+                <Input
+                  className="rounded-lg"
+                  label="username"
+                  name="username"
+                  placeholder="Enter your username"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.username.trim()}
+                />
+                {formik.touched.username && !!formik.errors.username && (
+                  <span className="ms-1 text-sm text-red-500 ">{formik.errors.username}</span>
+                )}
+              </div>
+              <div>
+                <Input
+                  className="rounded-lg"
+                  label="Password"
+                  name="password"
+                  placeholder="Enter your password"
+                  endContent={
+                    <button
+                      className="focus:outline-none "
+                      type="button"
+                      onClick={toggleVisibility}
+                    >
+                      {isVisible ? <EyeSlashFilledIcon /> : <EyeFilledIcon />}
+                    </button>
+                  }
+                  type={isVisible ? "text" : "password"}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password.trim()}
+                />
+                {formik.touched.password && !!formik.errors.password && (
+                  <span className="ms-1 text-sm text-red-500 ">{formik.errors.password}</span>
+                )}
+              </div>
             </div>
             <Button
               className="w-full rounded-lg bg-black font-semibold text-white dark:bg-white dark:text-black"
