@@ -100,19 +100,30 @@ interface CommentResponse {
   // Add other fields if necessary
 }
 
-export async function addComment(comment: NewComment): Promise<CommentResponse> {
-  const response = await fetch("https://dummyjson.com/comments/add", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(comment)
-  });
+export async function addComment(
+  comment: NewComment,
+  setIsLoading: (isLoading: boolean) => void
+): Promise<CommentResponse> {
+  setIsLoading(true);
+  try {
+    const response = await fetch("https://dummyjson.com/comments/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(comment)
+    });
 
-  if (!response.ok) {
-    throw new Error("Failed to add comment");
+    if (!response.ok) {
+      throw new Error("Failed to add comment");
+    }
+    // revalidateTag("getComments");
+
+    const data = await response.json();
+    console.log(data);
+    return data; // Adjust based on the actual structure of the response
+  } catch (error) {
+    console.error("Error adding comment:", error);
+    throw error; // Re-throw the error to be handled by the calling function
+  } finally {
+    setIsLoading(false);
   }
-  // revalidateTag("getComments");
-
-  const data = await response.json();
-  console.log(data);
-  return data; // Adjust based on the actual structure of the response
 }

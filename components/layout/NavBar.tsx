@@ -103,7 +103,7 @@ export default function NavBar({ lang }: { lang: Locale }) {
               >
                 <p className="text-black dark:text-customGray"> Pages</p>
                 <RiArrowDropDownLine
-                  className="mt-2 text-black dark:text-customGray"
+                  className=" text-black dark:text-customGray"
                   size={30}
                 />
               </Button>
