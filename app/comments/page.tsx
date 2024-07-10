@@ -54,13 +54,16 @@ export default function Comments() {
               <CommentSk />
             </>
           ) : (
-            comments.map((comment: { id: Key | null | undefined; user: { fullName: string }; body: string }) => (
-              <Comment
-                key={comment.id}
-                userName={comment.user.fullName}
-                commentBody={comment.body}
-              />
-            ))
+            comments.map(
+              (comment: { id: Key | null | undefined; user: { fullName: string }; body: string }, idx: number) => (
+                <Comment
+                  id={idx * page}
+                  key={comment.id}
+                  userName={comment.user.fullName}
+                  commentBody={comment.body}
+                />
+              )
+            )
           )}
         </div>
         <Pagination

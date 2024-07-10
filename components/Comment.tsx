@@ -4,14 +4,15 @@ import React from "react";
 interface CommentProps {
   userName: string;
   commentBody: string;
+  id: number;
 }
 
-const Comment = ({ userName, commentBody }: CommentProps) => {
+const Comment = ({ userName, commentBody, id }: CommentProps) => {
   return (
     <div className="flex w-full items-start justify-start  gap-3 rounded-lg bg-slate-100 p-2  dark:bg-primaryDark ">
       <div>
         <Avatar
-          src="https://i.pravatar.cc/150?u=a04258114e2911402d"
+          src={`https://i.pravatar.cc/150?u=a0425811${id}4e2911402d`}
           size="lg"
         />
       </div>
