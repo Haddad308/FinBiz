@@ -1,4 +1,3 @@
-import { revalidateTag } from "next/cache";
 import { saveCookies } from "./lib";
 
 export async function login(
