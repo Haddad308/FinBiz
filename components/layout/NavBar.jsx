@@ -14,7 +14,8 @@ import {
   DropdownMenu,
   Button,
   DropdownTrigger,
-  Dropdown
+  Dropdown,
+  Skeleton
 } from "@nextui-org/react";
 import Image from "next/image";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -24,7 +25,7 @@ import Logout from "../Logout";
 import { useUser } from "@/contexts/userContext";
 
 export default function NavBar() {
-  const { user } = useUser();
+  const { user, loading } = useUser();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
@@ -166,14 +167,20 @@ export default function NavBar() {
           <DarkModeToggle />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
-          {user ? (
-            <Logout />
+          {!loading ? (
+            user ? (
+              <Logout />
+            ) : (
+              <Button
+                onClick={() => router.push("/login")}
+                className="bggr rounded-full border-2 border-b-0 border-blackGray  bg-[#f6f6f6] text-lg font-semibold text-black dark:bg-[#1f1f1f] dark:text-white"
+              >
+                Sign in
+              </Button>
+            )
           ) : (
-            <Button
-              onClick={() => router.push("/login")}
-              className="bggr rounded-full border-2 border-b-0 border-blackGray  bg-[#f6f6f6] text-lg font-semibold text-black dark:bg-[#1f1f1f] dark:text-white"
-            >
-              Sign in
+            <Button className="bggr rounded-full border-2 border-b-0 border-blackGray  bg-[#f6f6f6] text-lg font-semibold text-black dark:bg-[#1f1f1f] dark:text-white">
+              <Skeleton className="h-3 w-full rounded-lg  " />
             </Button>
           )}
         </NavbarItem>

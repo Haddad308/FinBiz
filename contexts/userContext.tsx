@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { getSession } from "@/lib";
 
@@ -8,6 +9,7 @@ interface User {
 
 interface UserContextProps {
   user: User | null;
+  loading: boolean; // Add the 'loading' property
   fetchUser: () => Promise<void>;
 }
 
@@ -19,17 +21,26 @@ interface UserProviderProps {
 
 export function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   const fetchUser = async () => {
-    const sessionUser = await getSession();
-    setUser(sessionUser);
+    try {
+      const sessionUser = await getSession();
+      if (sessionUser && JSON.stringify(sessionUser) !== JSON.stringify(user)) {
+        setUser(sessionUser);
+      }
+    } catch (error) {
+      console.error("Error fetching user session:", error);
+    } finally {
+      setLoading(false); // Set loading to false after fetching
+    }
   };
 
   useEffect(() => {
     fetchUser();
   }, []);
 
-  return <UserContext.Provider value={{ user, fetchUser }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ user, loading, fetchUser }}>{children}</UserContext.Provider>;
 }
 
 export function useUser() {
