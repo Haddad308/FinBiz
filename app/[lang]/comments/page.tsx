@@ -8,6 +8,7 @@ import { Key, Suspense, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Locale } from "@/i18n.config";
 
 type CommentType = {
   user: any;
@@ -16,14 +17,12 @@ type CommentType = {
   body: string;
 };
 
-export default function Comments() {
+export default function Comments({ params: { lang } }: { params: { lang: Locale } }) {
   const searchParams = useSearchParams();
   const router = useRouter();
+
   // const urlPage = parseInt(router.query.page as string, 10);
   const urlPage = searchParams?.get("page") ? parseInt(searchParams.get("page") as string, 10) : 1;
-  useEffect(() => {
-    console.log("urlPage", urlPage);
-  }, [urlPage]);
 
   const [comments, setComments] = useState<any>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);

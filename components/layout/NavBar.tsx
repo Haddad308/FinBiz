@@ -23,8 +23,10 @@ import DarkModeToggle from "../DarkModeToggle";
 import { useRouter } from "next/navigation";
 import Logout from "../Logout";
 import { useUser } from "@/contexts/userContext";
+import LocaleSwitcher from "../LocaleSwithcer";
+import { Locale } from "@/i18n.config";
 
-export default function NavBar() {
+export default function NavBar({ lang }: { lang: Locale }) {
   const { user, loading } = useUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
@@ -69,7 +71,7 @@ export default function NavBar() {
                 width={25}
                 height={25}
                 className="my-2"
-                src="/logo.svg"
+                src={`/${lang}/logo.svg`}
                 alt="logo"
               />
               <p className="text-2xl font-semibold text-black dark:text-white ">FinBiz</p>
@@ -163,6 +165,7 @@ export default function NavBar() {
           <DarkModeToggle />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
+          <LocaleSwitcher />
           {!loading ? (
             user ? (
               <Logout />
