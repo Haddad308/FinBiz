@@ -24,6 +24,8 @@ export function UserProvider({ children }: UserProviderProps) {
   const [loading, setLoading] = useState(true); // Add loading state
 
   const fetchUser = async () => {
+    console.log("Fetching user...");
+
     try {
       const sessionUser = await getSession();
       if (sessionUser && JSON.stringify(sessionUser) !== JSON.stringify(user)) {

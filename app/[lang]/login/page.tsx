@@ -20,7 +20,6 @@ const Login = () => {
   const { fetchUser } = useUser();
 
   const updateUser = async () => {
-    console.log("Updating user ?? ");
     await fetchUser();
   };
 
