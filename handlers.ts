@@ -52,3 +52,33 @@ export async function register(
   const data = await response.json();
   console.log(data);
 }
+
+interface Comment {
+  body: string;
+  postId: number;
+  // Add other fields if necessary
+}
+
+export async function fetchComments(
+  limit: number,
+  skip: number,
+  setIsLoading: (isLoading: boolean) => void,
+  setTotal: (total: number) => void
+): Promise<Comment[]> {
+  setIsLoading(true);
+  try {
+    const response = await fetch(`https://dummyjson.com/comments?limit=${limit}&skip=${skip}&select=body,postId`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch comments");
+    }
+    const data = await response.json();
+    console.log(data);
+    setTotal(data.total);
+    return data.comments; // Adjust based on the actual structure of the response
+  } catch (error) {
+    console.error("Error fetching comments:", error);
+    throw error; // Re-throw the error to be handled by the calling function
+  } finally {
+    setIsLoading(false);
+  }
+}
