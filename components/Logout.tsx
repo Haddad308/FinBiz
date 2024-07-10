@@ -14,6 +14,7 @@ export default function Logout() {
   const updateUser = async () => {
     await fetchUser();
   };
+
   return (
     <>
       <Button
@@ -42,9 +43,10 @@ export default function Logout() {
                   className="bg-red-500 text-white"
                   onClick={() => {
                     logout().then(() => {
-                      router.push("/");
-                      onClose();
-                      updateUser();
+                      updateUser().then(() => {
+                        router.push("/");
+                        onClose();
+                      });
                     });
                   }}
                 >
