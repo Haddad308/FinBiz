@@ -4,6 +4,7 @@ import { Providers } from "./providors";
 import Footer from "@/components/layout/Footer";
 import { Rights } from "@/components/layout/Rights";
 import Head from "next/head"; // Assuming you are using Next.js for server-side rendering
+import { Suspense } from "react";
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -32,10 +33,12 @@ export default function RootLayout({
           {/* Other meta tags and links as needed */}
         </Head>
         <Providers>
-          <NavBar />
-          {children}
-          <Footer />
-          <Rights />
+          <Suspense fallback={<div>Loading...</div>}>
+            <NavBar />
+            {children}
+            <Footer />
+            <Rights />
+          </Suspense>
         </Providers>
       </body>
     </html>
