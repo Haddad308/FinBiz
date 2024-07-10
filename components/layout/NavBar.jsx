@@ -26,13 +26,9 @@ import { useUser } from "@/contexts/userContext";
 
 export default function NavBar() {
   const { user, loading } = useUser();
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    console.log("User", user);
-  }, [user]);
   return (
     <Navbar
       shouldHideOnScroll

@@ -1,3 +1,4 @@
+import { revalidateTag } from "next/cache";
 import { saveCookies } from "./lib";
 
 export async function login(
@@ -67,7 +68,9 @@ export async function fetchComments(
 ): Promise<Comment[]> {
   setIsLoading(true);
   try {
-    const response = await fetch(`https://dummyjson.com/comments?limit=${limit}&skip=${skip}&select=body,postId`);
+    const response = await fetch(`https://dummyjson.com/comments?limit=${limit}&skip=${skip}&select=body,postId`, {
+      next: { tags: ["getComments"] }
+    });
     if (!response.ok) {
       throw new Error("Failed to fetch comments");
     }
@@ -81,4 +84,36 @@ export async function fetchComments(
   } finally {
     setIsLoading(false);
   }
+}
+
+interface NewComment {
+  body: string;
+  postId: number;
+  userId: number;
+  // Add other fields if necessary
+}
+
+interface CommentResponse {
+  id: number;
+  body: string;
+  postId: number;
+  userId: number;
+  // Add other fields if necessary
+}
+
+export async function addComment(comment: NewComment): Promise<CommentResponse> {
+  const response = await fetch("https://dummyjson.com/comments/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(comment)
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to add comment");
+  }
+  // revalidateTag("getComments");
+
+  const data = await response.json();
+  console.log(data);
+  return data; // Adjust based on the actual structure of the response
 }
