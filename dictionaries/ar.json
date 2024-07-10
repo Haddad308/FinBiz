@@ -22,8 +22,10 @@
     "submitting": "جاري الإرسال..."
   },
   "comments": {
-    "comment": "تعليق",
-    "comments": "التعليقات {{total}}",
+    "comment": " تعليق",
+    "addcomment": "اضافة تعليق جديد",
+    "entercomment": "قم بادخال تعليقك هنا...",
+    "comments": "التعليقات",
     "submit_comment": "إرسال التعليق"
   }
 }

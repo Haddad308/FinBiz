@@ -1,3 +1,5 @@
+// "use client";
+
 import "./globals.css";
 import { Providers } from "./providors";
 import Footer from "@/components/layout/Footer";

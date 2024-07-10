@@ -8,15 +8,15 @@ import Highligt from "../../Highligt";
 import { SearchBar } from "../../SearchBar";
 
 const HeroSection = ({ lang }: { lang: Locale }) => {
-  const [navigation, setNavigation] = useState({ home: "" });
+  // const [navigation, setNavigation] = useState({ home: "" });
 
-  useEffect(() => {
-    const fetchDictionary = async () => {
-      const dictionary = await getDictionary(lang);
-      setNavigation(dictionary.navigation);
-    };
-    fetchDictionary();
-  }, [lang]);
+  // useEffect(() => {
+  //   const fetchDictionary = async () => {
+  //     const dictionary = await getDictionary(lang);
+  //     setNavigation(dictionary.comments);
+  //   };
+  //   fetchDictionary();
+  // }, [lang]);
 
   return (
     <div className="flex flex-col items-center justify-center gap-3 bg-lightGray py-5 dark:bg-darkGray md:px-16">

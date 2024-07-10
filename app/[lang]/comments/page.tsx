@@ -1,33 +1,60 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import Comment from "@/components/Comment";
 import CommentSk from "@/components/CommentSk";
 import { addComment, fetchComments } from "@/handlers";
 import { Button, Pagination, Textarea } from "@nextui-org/react";
-import { Key, Suspense, useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Locale } from "@/i18n.config";
+import { getDictionary } from "@/lib/dictionary";
 
 type CommentType = {
-  user: any;
+  user: { fullName: string };
   id: number;
-  userName: string;
   body: string;
 };
 
+type NavigationType = {
+  comment: string;
+  comments: string;
+  addcomment: string;
+  entercomment: string;
+  submit_comment: string;
+};
+
 export default function Comments({ params: { lang } }: { params: { lang: Locale } }) {
+  const [navigation, setNavigation] = useState<NavigationType>({
+    comment: "",
+    comments: "",
+    addcomment: "",
+    entercomment: "",
+    submit_comment: ""
+  });
+
+  const fetchDictionary = async () => {
+    const dictionary = await getDictionary(lang);
+    setNavigation({
+      ...dictionary.comments,
+      addcomment: dictionary.comments.addcomment
+    });
+  };
+
+  useEffect(() => {
+    fetchDictionary();
+  }, [lang]);
+
   const searchParams = useSearchParams();
   const router = useRouter();
-
-  // const urlPage = parseInt(router.query.page as string, 10);
   const urlPage = searchParams?.get("page") ? parseInt(searchParams.get("page") as string, 10) : 1;
 
-  const [comments, setComments] = useState<any>([]);
+  const [comments, setComments] = useState<CommentType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [total, setTotal] = useState<number>(0);
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(urlPage);
   const ITEMS = 5; // Number of comments per page
 
   const formik = useFormik({
@@ -37,22 +64,24 @@ export default function Comments({ params: { lang } }: { params: { lang: Locale 
     validationSchema: Yup.object({
       body: Yup.string().required("Required")
     }),
-    onSubmit: () => {
-      addComment({ body: formik.values.body, postId: 1, userId: 1 }).then(() => {
-        fetchComments(ITEMS, page * ITEMS - ITEMS, setIsLoading, setTotal).then((data) =>
-          setComments(data as unknown as CommentType[])
-        );
-      });
+    onSubmit: async () => {
+      await addComment({ body: formik.values.body.trim(), postId: 1, userId: 1 });
+      fetchCommentsData();
     }
   });
 
+  const fetchCommentsData = async () => {
+    setIsLoading(true);
+    const data = await fetchComments(ITEMS, (page - 1) * ITEMS, setIsLoading, setTotal);
+    setComments(data as unknown as CommentType[]);
+    setIsLoading(false);
+  };
+
   useEffect(() => {
     if (urlPage !== page) {
-      setPage(urlPage || 1); // Update page state if URL page changes
+      setPage(urlPage);
     }
-    fetchComments(ITEMS, page * ITEMS - ITEMS, setIsLoading, setTotal).then((data) =>
-      setComments(data as unknown as CommentType[])
-    );
+    fetchCommentsData();
   }, [page, urlPage]);
 
   const handlePageChange = (newPage: number) => {
@@ -62,27 +91,27 @@ export default function Comments({ params: { lang } }: { params: { lang: Locale 
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <div className="flex  items-center justify-center">
+      <div className="flex items-center justify-center">
         <main className="my-20 flex w-5/6 flex-col items-center justify-center md:w-1/3">
-          <h1 className="mb-5 self-start text-2xl font-bold">Add your comment</h1>
+          <h1 className="mb-5 self-start text-2xl font-bold">{navigation.addcomment}</h1>
           <div className="w-full">
             <Textarea
-              label="Comment"
+              label={navigation.comment}
               name="body"
               variant="bordered"
-              placeholder="Enter your comment here..."
+              placeholder={navigation.entercomment}
               disableAnimation
               disableAutosize
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.body.trim()}
+              value={formik.values.body}
               classNames={{
                 base: "w-full",
                 input: "resize-y min-h-[40px]"
               }}
             />
-            {formik.touched.body && !!formik.errors.body && (
-              <span className="ms-1 text-sm text-red-500 ">{formik.errors.body}</span>
+            {formik.touched.body && formik.errors.body && (
+              <span className="ms-1 text-sm text-red-500">{formik.errors.body}</span>
             )}
           </div>
           <div className="mt-5 self-start">
@@ -90,11 +119,11 @@ export default function Comments({ params: { lang } }: { params: { lang: Locale 
               color="primary"
               type="submit"
             >
-              Post
+              {navigation.submit_comment}
             </Button>
           </div>
           <div className="mt-5 h-[1px] w-full bg-gray-300" />
-          <h1 className="mb-5 mt-5 self-start text-2xl font-bold">Comments</h1>
+          <h1 className="mb-5 mt-5 self-start text-2xl font-bold">{navigation.comments}</h1>
           <div className="mb-5 flex w-full flex-col gap-4">
             {isLoading ? (
               <>
@@ -103,20 +132,18 @@ export default function Comments({ params: { lang } }: { params: { lang: Locale 
                 <CommentSk />
               </>
             ) : (
-              comments.map(
-                (comment: { id: Key | null | undefined; user: { fullName: string }; body: string }, idx: number) => (
-                  <Comment
-                    id={idx * page}
-                    key={comment.id}
-                    userName={comment.user.fullName}
-                    commentBody={comment.body}
-                  />
-                )
-              )
+              comments.map((comment: CommentType, idx: number) => (
+                <Comment
+                  id={idx * page}
+                  key={comment.id}
+                  userName={comment.user.fullName}
+                  commentBody={comment.body}
+                />
+              ))
             )}
           </div>
           <Pagination
-            onChange={(page: number) => handlePageChange(page)}
+            onChange={handlePageChange}
             isCompact
             showControls
             total={Math.ceil(total / ITEMS)}

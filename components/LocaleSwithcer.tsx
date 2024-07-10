@@ -21,6 +21,13 @@ export default function LocaleSwitcher() {
         return (
           <li key={locale}>
             <Link
+              // onClick={() => {
+              //   if (locale === "ar") {
+              //     document.body.dir = "rtl";
+              //   } else {
+              //     document.body.dir = "ltr";
+              //   }
+              // }}
               href={redirectedPathName(locale)}
               className="rounded-md border bg-black px-3 py-2 text-white"
             >
