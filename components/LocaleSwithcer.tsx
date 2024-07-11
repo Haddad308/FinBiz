@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -17,25 +18,16 @@ export default function LocaleSwitcher() {
 
   return (
     <ul className="flex gap-x-3">
-      {i18n.locales.map((locale) => {
-        return (
-          <li key={locale}>
-            <Link
-              // onClick={() => {
-              //   if (locale === "ar") {
-              //     document.body.dir = "rtl";
-              //   } else {
-              //     document.body.dir = "ltr";
-              //   }
-              // }}
-              href={redirectedPathName(locale)}
-              className="rounded-md border bg-black px-3 py-2 text-white"
-            >
-              {locale}
-            </Link>
-          </li>
-        );
-      })}
+      {i18n.locales.map((locale) => (
+        <li key={locale}>
+          <Link
+            href={redirectedPathName(locale)}
+            className="rounded-md border bg-black px-3 py-2 text-white"
+          >
+            {locale}
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 }

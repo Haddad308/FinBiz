@@ -64,7 +64,7 @@ export default function NavBar({ lang }: { lang: Locale }) {
         <div className=" flex items-center justify-between gap-20">
           <NavbarBrand>
             <Link
-              href={"/"}
+              href={`/${lang}`}
               className="flex gap-2"
             >
               <Image
@@ -118,7 +118,7 @@ export default function NavBar({ lang }: { lang: Locale }) {
           >
             <DropdownItem>
               <Link
-                href="/comments"
+                href={`/${lang}/comments`}
                 className="flex items-center text-black dark:text-customGray "
               >
                 <h4 className="font-semibold">Comments</h4>
@@ -136,10 +136,10 @@ export default function NavBar({ lang }: { lang: Locale }) {
         </Dropdown>
         <NavbarItem>
           <Link
-            href="#"
+            href={`/${lang}/comments`}
             className="cursor-pointer text-xl text-black dark:text-customGray"
           >
-            Integrations
+            Comments
           </Link>
         </NavbarItem>
         <NavbarItem>
@@ -171,7 +171,7 @@ export default function NavBar({ lang }: { lang: Locale }) {
               <Logout />
             ) : (
               <Button
-                onClick={() => router.push("/login")}
+                onClick={() => router.push(`/${lang}/login`)}
                 className="bggr rounded-full border-2 border-b-0 border-blackGray  bg-[#f6f6f6] text-lg font-semibold text-black dark:bg-[#1f1f1f] dark:text-white"
               >
                 Sign in
@@ -189,7 +189,7 @@ export default function NavBar({ lang }: { lang: Locale }) {
       <NavbarMenu>
         <NavbarMenuItem>
           <Link
-            href="/login"
+            href={`/${lang}/login`}
             size="lg"
             className="cursor-pointer text-xl text-black dark:text-customGray"
           >
@@ -198,7 +198,7 @@ export default function NavBar({ lang }: { lang: Locale }) {
         </NavbarMenuItem>
         <NavbarMenuItem>
           <Link
-            href="/comments"
+            href={`/${lang}/comments`}
             size="lg"
             className="cursor-pointer text-xl text-black dark:text-customGray"
           >

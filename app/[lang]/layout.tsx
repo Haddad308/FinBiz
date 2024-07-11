@@ -11,12 +11,14 @@ import { Inter } from "next/font/google";
 import NavBar from "@/components/layout/NavBar";
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
-}
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Msaaq - Home"
+};
+
 export default function RootLayout({
   // Layouts must accept a children prop.
-  // This will be populated with nested layouts or pages
   children,
   params
 }: {
@@ -29,19 +31,6 @@ export default function RootLayout({
       suppressHydrationWarning={true}
     >
       <body className={inter.className}>
-        <Head>
-          <meta charSet="UTF-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <meta
-            name="description"
-            content="Your meta description here."
-          />
-          <title>Your Page Title</title>
-          {/* Other meta tags and links as needed */}
-        </Head>
         <Providers>
           <Suspense fallback={<div>Loading...</div>}>
             <NavBar lang={params.lang} />
