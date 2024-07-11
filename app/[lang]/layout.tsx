@@ -14,7 +14,8 @@ const inter = Inter({ subsets: ["latin"] });
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Msaaq - Home"
+  title: "Msaaq - Home",
+  description: "Welcome to Msaaq, the best place for all your needs."
 };
 
 export default function RootLayout({
