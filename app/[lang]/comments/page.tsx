@@ -139,6 +139,8 @@ export default function Comments({ params: { lang } }: { params: { lang: Locale 
                 <CommentSk />
                 <CommentSk />
                 <CommentSk />
+                <CommentSk />
+                <CommentSk />
               </>
             ) : (
               comments.map((comment: CommentType, idx: number) => (

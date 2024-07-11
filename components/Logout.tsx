@@ -5,12 +5,10 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 import { logout } from "@/lib";
 import { useUser } from "@/contexts/userContext";
 import { Locale } from "@/i18n.config";
-import { useRouter } from "next/navigation";
 
 export default function Logout({ lang }: { lang: Locale }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { fetchUser } = useUser();
-  const router = useRouter();
 
   const updateUser = async () => {
     try {

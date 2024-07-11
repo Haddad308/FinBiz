@@ -39,6 +39,7 @@
     "@types/react-dom": "17.0.14",
     "@types/react-slick": "^0.23.13",
     "autoprefixer": "^10.4.14",
+    "cypress": "^13.13.0",
     "eslint": "8.41.0",
     "eslint-config-next": "^14.2.4",
     "postcss": "^8.4.23",
