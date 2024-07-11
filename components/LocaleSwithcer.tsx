@@ -16,6 +16,15 @@ export default function LocaleSwitcher() {
     return segments.join("/");
   };
 
+  useEffect(() => {
+    const locale = pathName ? pathName.split("/")[1] : "";
+    if (locale === "ar") {
+      document.body.dir = "rtl";
+    } else {
+      document.body.dir = "ltr";
+    }
+  }, [pathName]);
+
   return (
     <ul className="flex gap-x-3">
       {i18n.locales.map((locale) => (

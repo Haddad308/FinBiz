@@ -31,6 +31,12 @@ export default function RootLayout({
       lang={params.lang}
       suppressHydrationWarning={true}
     >
+      <head>
+        <link
+          rel="icon"
+          href="https://msaaq.com/wp-content/uploads/2020/11/favicon.svg"
+        />
+      </head>
       <body className={inter.className}>
         <Providers>
           <Suspense fallback={<div>Loading...</div>}>
