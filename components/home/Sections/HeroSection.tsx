@@ -10,9 +10,9 @@ const HeroSection = () => {
         mainText="Introducing AI Automation"
         isMain={true}
       />
-      <h1 className="my-4 text-center text-5xl font-semibold text-primaryDark dark:text-white">
+      {/* <h1 className="my-4 text-center text-5xl font-semibold text-primaryDark dark:text-white">
         The Finance Solutions <br className="hidden sm:block md:block" /> For Your Business
-      </h1>
+      </h1> */}
       <p className="text-center text-customGray">
         Empower your finance team. The one-stop platform for all financial management
         <br /> of small and medium-sized businesses.
