@@ -1,5 +1,3 @@
-"use client";
-
 import Analytics from "@/components/home/Sections/Analytics";
 import HeroSection from "@/components/home/Sections/HeroSection";
 import Pricing from "@/components/home/Sections/Pricing";

@@ -50,7 +50,6 @@ export async function register(
   });
 
   const data = await response.json();
-  console.log(data);
 }
 
 interface Comment {
@@ -74,7 +73,6 @@ export async function fetchComments(
       throw new Error("Failed to fetch comments");
     }
     const data = await response.json();
-    console.log(data);
     setTotal(data.total);
     return data.comments; // Adjust based on the actual structure of the response
   } catch (error) {
@@ -118,7 +116,6 @@ export async function addComment(
     // revalidateTag("getComments");
 
     const data = await response.json();
-    console.log(data);
     return data; // Adjust based on the actual structure of the response
   } catch (error) {
     console.error("Error adding comment:", error);
