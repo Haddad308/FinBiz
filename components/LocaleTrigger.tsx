@@ -4,30 +4,28 @@ import React, { useEffect, useState, useMemo } from "react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { GrLanguage } from "react-icons/gr";
-import { i18n, Locale } from "@/i18n.config";
+import { Locale } from "@/i18n.config";
+import { useLocale } from "@/contexts/LocaleContext";
 
 export default function LocaleSwitcher({ lang }: { lang: Locale }) {
   const pathName = usePathname();
+  const { locale, updateLocale } = useLocale(); // Use the context
   const iconClasses = "text-xl font-bold text-slate-600 pointer-events-none flex-shrink-0";
 
-  const redirectedPathName = (locale: string) => {
+  const redirectedPathName = (newLocale: string) => {
     if (!pathName) return "/";
     const segments = pathName.split("/");
-    segments[1] = locale;
+    segments[1] = newLocale;
     return segments.join("/");
   };
 
-  useEffect(() => {
-    const locale = pathName ? pathName.split("/")[1] : "";
-    if (locale === "ar") {
-      document.body.dir = "rtl";
-    } else {
-      document.body.dir = "ltr";
-    }
-  }, [pathName]);
-
-  const [selectedKeys, setSelectedKeys] = useState<Set<string>>(new Set<string>([lang]));
+  const [selectedKeys, setSelectedKeys] = useState<Set<string>>(new Set<string>([lang.toString() as string]));
   const selectedValue = useMemo(() => Array.from(selectedKeys).join(", ").replaceAll("_", " "), [selectedKeys]);
+
+  useEffect(() => {
+    setSelectedKeys(new Set<string>([locale])); // Update selected keys based on context
+    document.body.dir = locale === "ar" ? "rtl" : "ltr"; // Update body direction
+  }, [locale]);
 
   return (
     <Dropdown>
@@ -44,9 +42,11 @@ export default function LocaleSwitcher({ lang }: { lang: Locale }) {
         disallowEmptySelection
         selectionMode="single"
         selectedKeys={selectedKeys}
-        onSelectionChange={(keys) => setSelectedKeys(new Set<string>(keys as Set<string>))}
-        onAction={(key) => {
-          window.location.href = redirectedPathName(key.toString());
+        onSelectionChange={(keys) => {
+          const newLocale = Array.from(keys)[0];
+          setSelectedKeys(new Set<string>([newLocale.toString()]));
+          updateLocale(newLocale.toString());
+          window.location.href = redirectedPathName(newLocale.toString());
         }}
       >
         <DropdownItem

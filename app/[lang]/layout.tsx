@@ -1,11 +1,9 @@
-// "use client";
-
 import "./globals.css";
 import { Providers } from "./providors";
 import Footer from "@/components/layout/Footer";
 import { Rights } from "@/components/layout/Rights";
 import { Suspense } from "react";
-import { Locale, i18n } from "@/i18n.config";
+import { Locale } from "@/i18n.config";
 import { Inter } from "next/font/google";
 import NavBar from "@/components/layout/NavBar";
 import { Metadata } from "next";
@@ -25,6 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
+  console.log("params", params);
+
   return (
     <html
       lang={params.lang}

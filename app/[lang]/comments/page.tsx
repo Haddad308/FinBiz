@@ -157,6 +157,7 @@ export default function Comments({ params: { lang } }: { params: { lang: Locale 
             showControls
             total={Math.ceil(total / ITEMS)}
             initialPage={urlPage}
+            dir="ltr"
           />
         </main>
       </div>

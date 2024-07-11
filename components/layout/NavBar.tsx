@@ -33,7 +33,6 @@ export default function NavBar({ lang }: { lang: Locale }) {
 
   return (
     <Navbar
-      shouldHideOnScroll
       onMenuOpenChange={setIsMenuOpen}
       className="block bg-white dark:bg-black dark:text-white md:px-16"
       classNames={{
