@@ -3,8 +3,11 @@ import { Providers } from "./providors";
 import Footer from "@/components/layout/Footer";
 import { Rights } from "@/components/layout/Rights";
 import { Locale } from "@/i18n.config";
+import { Inter } from "next/font/google";
 import NavBar from "@/components/layout/NavBar";
 import { Metadata } from "next";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Msaaq - Home",
@@ -30,7 +33,7 @@ export default function RootLayout({
           href="https://msaaq.com/wp-content/uploads/2020/11/favicon.svg"
         />
       </head>
-      <body>
+      <body className={inter.className}>
         <Providers>
           <NavBar lang={params.lang} />
           {children}
