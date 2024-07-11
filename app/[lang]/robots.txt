@@ -1,5 +1,5 @@
 User-Agent: *
 Allow: /
-Disallow: /private/
+
 
 Sitemap: https://msaaq-task.vercel.app
