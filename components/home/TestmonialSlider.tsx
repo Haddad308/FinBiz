@@ -61,7 +61,7 @@ const TestomonialSlider = () => {
               <div className="flex items-center gap-4">
                 <Avatar
                   isBordered
-                  src={"https://i.pravatar.cc/150?u=a042581f4e29026024d"}
+                  src={"/Avatars/avater1.jpeg"}
                   size="md"
                 />
                 <div>
