@@ -1,8 +1,3 @@
-import Image from "next/image";
-import AnalyticsCard from "../../AnalyticsCard";
-import { Avatar, AvatarGroup, Button } from "@nextui-org/react";
-import Chart from "react-apexcharts";
-import ApexChart from "../../charts/AreaChart";
 import RadialGrad from "../RadialGrad";
 import TinyNavBar from "../TinyNavBar";
 import MainBanner from "../MainBanner";

@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html
       lang={params.lang}
-      suppressHydrationWarning={true}
+      suppressHydrationWarning={false}
     >
       <head>
         <link

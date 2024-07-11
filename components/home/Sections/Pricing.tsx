@@ -3,7 +3,6 @@ import Highligt from "@/components/Highligt";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { PricingCard } from "../PricingCard";
 import Image from "next/image";
-import { Button } from "@nextui-org/react";
 
 const Pricing = () => {
   return (
