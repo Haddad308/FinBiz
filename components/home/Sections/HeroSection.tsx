@@ -20,11 +20,11 @@ const HeroSection = () => {
       <SearchBar />
       <div className="mt-7 flex flex-col items-center justify-center gap-3">
         <AvatarGroup isBordered>
-          <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-          <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
-          <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
-          <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" />
-          <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026702d" />
+          <Avatar src="/Avatars/avater1.jpeg" />
+          <Avatar src="/Avatars/avater2.jpeg" />
+          <Avatar src="/Avatars/avater3.jpeg" />
+          <Avatar src="/Avatars/avater4.jpeg" />
+          <Avatar src="/Avatars/avater5.jpeg" />
         </AvatarGroup>
         <p className="text-customGray">1,200+ reviews (4.9 of 5)</p>
       </div>

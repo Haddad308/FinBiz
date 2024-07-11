@@ -55,9 +55,9 @@ const SecondBanner = () => {
           <div className="flex h-[250px] w-[250px]  items-center justify-center rounded-full bg-[#f4f4f4] dark:border-[1px] dark:border-gray-700 dark:bg-transparent md:h-[120px]  md:w-[120px] lg:h-[200px]  lg:w-[200px]">
             <div className="flex h-[200px] w-[200px] items-center justify-center rounded-full bg-[#e5eadb] dark:border-[1px] dark:border-gray-700  dark:bg-primaryDark md:h-[80px]  md:w-[80px] lg:h-[150px]  lg:w-[150px]">
               <AvatarGroup>
-                <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-                <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
-                <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026702d" />
+                <Avatar src="/Avatars/avater1.jpeg" />
+                <Avatar src="/Avatars/avater2.jpeg" />
+                <Avatar src="/Avatars/avater3.jpeg" />
               </AvatarGroup>
             </div>
           </div>
