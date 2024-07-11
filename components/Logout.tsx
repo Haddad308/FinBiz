@@ -1,11 +1,16 @@
+"use client";
+
 import React from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { logout } from "@/lib";
 import { useUser } from "@/contexts/userContext";
+import { Locale } from "@/i18n.config";
+import { useRouter } from "next/navigation";
 
-export default function Logout() {
+export default function Logout({ lang }: { lang: Locale }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { fetchUser } = useUser();
+  const router = useRouter();
 
   const updateUser = async () => {
     try {
@@ -20,7 +25,7 @@ export default function Logout() {
       await logout(); // Wait for logout to complete first
       await updateUser(); // Then update user data
       // Optionally, navigate to another page
-      // router.push("/");
+      router.push(`/${lang}`);
       onClose(); // Close the modal after everything is done
     } catch (error) {
       console.error("Error during logout:", error);

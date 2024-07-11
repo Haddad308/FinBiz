@@ -27,13 +27,13 @@ const DarkModeToggle: React.FC = () => {
       {theme === "dark" ? (
         <FaMoon
           className="cursor-pointer"
-          size={30}
+          size={40}
           onClick={toggleTheme}
         />
       ) : (
         <MdSunny
           className="cursor-pointer text-customGray"
-          size={35}
+          size={45}
           onClick={toggleTheme}
         />
       )}

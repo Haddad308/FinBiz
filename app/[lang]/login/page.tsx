@@ -81,7 +81,7 @@ const Login = ({ params: { lang } }: { params: { lang: Locale } }) => {
     onSubmit: async (values) => {
       setIsLoading(true);
       try {
-        await login(values.username, values.password, setIsLoading, setApiError);
+        await login("emilys", "emilyspass", setIsLoading, setApiError);
         await updateUser();
         router.push(`/${lang}/comments`);
       } catch (error) {
@@ -104,17 +104,6 @@ const Login = ({ params: { lang } }: { params: { lang: Locale } }) => {
 
           <div className="mt-5 flex w-full flex-col items-center gap-5">
             <div className="flex w-full flex-col gap-3">
-              <Select
-                label={navigation.chooseLang}
-                id="travelOfficeId"
-              >
-                <SelectItem
-                  key={1}
-                  value={5}
-                >
-                  vals
-                </SelectItem>
-              </Select>
               <div>
                 <Input
                   className="rounded-lg"

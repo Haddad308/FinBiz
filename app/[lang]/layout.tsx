@@ -8,9 +8,9 @@ import { Suspense } from "react";
 import { Locale, i18n } from "@/i18n.config";
 import { Inter } from "next/font/google";
 import NavBar from "@/components/layout/NavBar";
-const inter = Inter({ subsets: ["latin"] });
-
 import { Metadata } from "next";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Msaaq - Home",

@@ -10,6 +10,8 @@ export async function login(
   setApiError(null);
 
   try {
+    console.log("Logging in...");
+
     const response = await fetch("https://dummyjson.com/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

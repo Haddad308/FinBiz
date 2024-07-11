@@ -23,8 +23,8 @@ import DarkModeToggle from "../DarkModeToggle";
 import { useRouter } from "next/navigation";
 import Logout from "../Logout";
 import { useUser } from "@/contexts/userContext";
-import LocaleSwitcher from "../LocaleSwithcer";
 import { Locale } from "@/i18n.config";
+import ChangeLocale from "../LocaleTrigger";
 
 export default function NavBar({ lang }: { lang: Locale }) {
   const { user, loading } = useUser();
@@ -161,14 +161,14 @@ export default function NavBar({ lang }: { lang: Locale }) {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem>
+        <NavbarItem className="flex gap-2">
           <DarkModeToggle />
+          <ChangeLocale lang={lang} />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
-          <LocaleSwitcher />
           {!loading ? (
             user ? (
-              <Logout />
+              <Logout lang={lang} />
             ) : (
               <Button
                 onClick={() => router.push(`/${lang}/login`)}
