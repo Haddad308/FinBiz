@@ -4,7 +4,6 @@ import "./globals.css";
 import { Providers } from "./providors";
 import Footer from "@/components/layout/Footer";
 import { Rights } from "@/components/layout/Rights";
-import Head from "next/head"; // Assuming you are using Next.js for server-side rendering
 import { Suspense } from "react";
 import { Locale, i18n } from "@/i18n.config";
 import { Inter } from "next/font/google";
