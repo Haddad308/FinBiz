@@ -1,4 +1,4 @@
-import { saveCookies } from "./lib";
+import { saveCookies } from "./lib/lib";
 
 export async function login(
   username: string,

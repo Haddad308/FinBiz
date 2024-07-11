@@ -19,12 +19,12 @@ import {
 } from "@nextui-org/react";
 import Image from "next/image";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import DarkModeToggle from "../DarkModeToggle";
+import DarkModeToggle from "../system/DarkModeToggle";
 import { useRouter } from "next/navigation";
-import Logout from "../Logout";
+import Logout from "../system/Logout";
 import { useUser } from "@/contexts/userContext";
 import { Locale } from "@/i18n.config";
-import ChangeLocale from "../LocaleTrigger";
+import ChangeLocale from "../system/LocaleTrigger";
 
 export default function NavBar({ lang }: { lang: Locale }) {
   const { user, loading } = useUser();

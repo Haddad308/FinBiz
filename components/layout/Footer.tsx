@@ -3,7 +3,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { DiGithubAlt } from "react-icons/di";
 import { FaXTwitter } from "react-icons/fa6";
 import { LuInstagram } from "react-icons/lu";
-import { Subscribe } from "../Subscribe";
+import { Subscribe } from "./Subscribe";
 
 const Footer = () => {
   return (

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
-import { logout } from "@/lib";
+import { logout } from "@/lib/lib";
 import { useUser } from "@/contexts/userContext";
 import { Locale } from "@/i18n.config";
 

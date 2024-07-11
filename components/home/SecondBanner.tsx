@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 
 const SecondBanner = () => {
-  // *We need to optimize the card components in the SecondBanner component
+  // *We need to optimize the card components in the SecondBanner component by creating card components for each card.
 
   const { resolvedTheme } = useTheme();
 

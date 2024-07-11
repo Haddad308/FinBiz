@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import AnalyticsCard from "../AnalyticsCard";
+import AnalyticsCard from "./AnalyticsCard";
 import { Button } from "@nextui-org/react";
 import ApexChart from "../charts/AreaChart";
 import Image from "next/image";

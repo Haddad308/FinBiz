@@ -1,8 +1,9 @@
 import { Avatar, AvatarGroup } from "@nextui-org/react";
-import Highligt from "../../Highligt";
-import { SearchBar } from "../../SearchBar";
+import React from "react";
+import Highligt from "../Highligt";
+import { SearchBar } from "../SearchBar";
 
-const HeroSection = () => {
+const HeroSection: React.FC = React.memo(function HeroSection() {
   return (
     <div className="flex flex-col items-center justify-center gap-3 bg-lightGray py-5 dark:bg-darkGray md:px-16">
       <Highligt
@@ -20,16 +21,22 @@ const HeroSection = () => {
       <SearchBar />
       <div className="mt-7 flex flex-col items-center justify-center gap-3">
         <AvatarGroup isBordered>
-          <Avatar src="/Avatars/avater1.jpeg" />
-          <Avatar src="/Avatars/avater2.jpeg" />
-          <Avatar src="/Avatars/avater3.jpeg" />
-          <Avatar src="/Avatars/avater4.jpeg" />
-          <Avatar src="/Avatars/avater5.jpeg" />
+          {[
+            "/Avatars/avater1.jpeg",
+            "/Avatars/avater2.jpeg",
+            "/Avatars/avater3.jpeg",
+            "/Avatars/avater4.jpeg",
+            "/Avatars/avater5.jpeg"
+          ].map((src, index) => (
+            <Avatar
+              key={index}
+              src={src}
+            />
+          ))}
         </AvatarGroup>
         <p className="text-customGray">1,200+ reviews (4.9 of 5)</p>
       </div>
     </div>
   );
-};
-
+});
 export default HeroSection;

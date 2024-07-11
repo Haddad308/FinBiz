@@ -1,5 +1,5 @@
 import React from "react";
-import Highligt from "@/components/Highligt";
+import Highligt from "@/components/home/Highligt";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { PricingCard } from "../PricingCard";
 import Image from "next/image";

@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import Comment from "@/components/Comment";
-import CommentSk from "@/components/CommentSk";
+import Comment from "@/components/comments/Comment";
+import CommentSk from "@/components/comments/CommentSk";
 import { addComment, fetchComments } from "@/handlers";
 import { Button, Pagination, Textarea } from "@nextui-org/react";
 import { useEffect, useState } from "react";

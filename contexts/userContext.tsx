@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { getSession } from "@/lib";
+import { getSession } from "@/lib/lib";
 
 interface User {
   name: string;

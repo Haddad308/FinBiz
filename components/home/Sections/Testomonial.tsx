@@ -1,6 +1,6 @@
 import React from "react";
 import TestomonialSlider from "../TestmonialSlider";
-import Highligt from "@/components/Highligt";
+import Highligt from "@/components/home/Highligt";
 import { FaArrowRight } from "react-icons/fa";
 
 const Testomonial = () => {
