@@ -41,10 +41,10 @@ const MainBanner = () => {
           <p>Total Balance</p>
           <p className=" text-4xl md:text-xl lg:text-3xl ">$550.240</p>
         </div>
-        <div className="col-span-4 hidden rounded-xl border-2 bg-white text-black dark:border-gray-900  dark:dark:bg-[#1a1a1a] md:block">
+        <div className="col-span-4 hidden rounded-xl border-2  bg-white text-black dark:border-gray-900  dark:dark:bg-[#1a1a1a] md:block">
           <Image
             src={resolvedTheme !== "dark" ? "/ar/s0vrw3ylf.svg" : "/ar/s0vrw3ylf.svg"}
-            width={800}
+            width={900}
             height={800}
             alt="sdfsdfsdfs"
           />

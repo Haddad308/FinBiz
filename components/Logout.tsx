@@ -25,7 +25,7 @@ export default function Logout({ lang }: { lang: Locale }) {
       await logout(); // Wait for logout to complete first
       await updateUser(); // Then update user data
       // Optionally, navigate to another page
-      router.push(`/${lang}`);
+      window.location.reload();
       onClose(); // Close the modal after everything is done
     } catch (error) {
       console.error("Error during logout:", error);
