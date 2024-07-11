@@ -47,7 +47,6 @@ const MainBanner = () => {
             width={900}
             height={800}
             alt="sdfsdfsdfs"
-            loading="eager"
           />
         </div>
       </div>
