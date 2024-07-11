@@ -1,9 +1,15 @@
+"use client";
+
 import React from "react";
 import AnalyticsCard from "../AnalyticsCard";
 import { Button } from "@nextui-org/react";
 import ApexChart from "../charts/AreaChart";
+import Image from "next/image";
+import { useTheme } from "next-themes";
 
 const MainBanner = () => {
+  const { resolvedTheme } = useTheme();
+
   return (
     <div className="  z-10 w-[80%] rounded-xl border-0 bg-[#f2f2f2] p-3 shadow-2xl dark:border-gray-900 dark:bg-black">
       <div className=" grid w-full gap-4 md:grid-cols-3">
@@ -36,7 +42,12 @@ const MainBanner = () => {
           <p className=" text-4xl md:text-xl lg:text-3xl ">$550.240</p>
         </div>
         <div className="col-span-4 hidden rounded-xl border-2 bg-white text-black dark:border-gray-900  dark:dark:bg-[#1a1a1a] md:block">
-          <ApexChart />
+          <Image
+            src={resolvedTheme !== "dark" ? "/ar/s0vrw3ylf.svg" : "/ar/s0vrw3ylf.svg"}
+            width={800}
+            height={800}
+            alt="sdfsdfsdfs"
+          />
         </div>
       </div>
     </div>
