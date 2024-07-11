@@ -42,6 +42,7 @@ const SecondBanner = () => {
               width={500}
               height={500}
               alt="data report"
+              loading="eager"
             />
           </div>
         </div>
