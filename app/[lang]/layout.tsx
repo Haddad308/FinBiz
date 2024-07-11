@@ -23,12 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
-  console.log("params", params);
-
   return (
     <html
       lang={params.lang}
-      suppressHydrationWarning={false}
+      suppressHydrationWarning={true}
     >
       <head>
         <link
@@ -38,12 +36,10 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Providers>
-          <Suspense fallback={<div>Loading...</div>}>
-            <NavBar lang={params.lang} />
-            {children}
-            <Footer />
-            <Rights />
-          </Suspense>
+          <NavBar lang={params.lang} />
+          {children}
+          <Footer />
+          <Rights />
         </Providers>
       </body>
     </html>
