@@ -38,7 +38,7 @@ const SecondBanner = () => {
           </p>
           <div className="flex w-full items-center justify-center rounded-xl bg-[#f4f4f4] p-5 dark:bg-primaryDark ">
             <Image
-              src="/graph.png"
+              src="/ar/graph.png"
               width={500}
               height={500}
               alt="data report"
