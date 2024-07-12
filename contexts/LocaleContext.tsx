@@ -15,7 +15,7 @@ type LocaleProviderProps = {
 };
 
 export const LocaleProvider = ({ children }: LocaleProviderProps) => {
-  const [locale, setLocale] = useState<string>("ar"); // Default to 'en' if localStorage is not available
+  const [locale, setLocale] = useState<string>("en"); // Default to 'en' if localStorage is not available
 
   useEffect(() => {
     setLocale(getLocalePreference());

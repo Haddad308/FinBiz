@@ -12,5 +12,5 @@ export const getLocalePreference = (): string => {
       return value;
     }
   }
-  return "ar"; // Default to 'ar' if no preference is found
+  return "en"; // Default to 'ar' if no preference is found
 };
